@@ -1,19 +1,30 @@
+
+D'accord, voici comment vous pouvez modifier votre code en utilisant des balises <div> à la place des balises <p> :
+
+html
+Copy code
 <!DOCTYPE html>
 <html>
 
 <head>
   <title>Explorez l'Europe</title>
   <link href="style.css" rel="stylesheet" type="text/css">
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
   <h1>Bienvenue sur notre site pour explorer l'Europe</h1>
-  <img src="https://www.touteleurope.eu/wp-content/uploads/2022/07/montage-patrimoine-europeen.jpg" alt="villes d'europe">
-  <img src="https://i.pinimg.com/564x/ce/cc/1a/cecc1ad84da3a716d7977a4e65a2e049.jpg" alt="carte europe">
-  <p>Partez à la découverte des trésors cachés de l'Europe, de ses cultures diverses et de ses paysages à couper le souffle.<br>
+  <img src="https://www.touteleurope.eu/wp-content/uploads/2022/07/montage-patrimoine-europeen.jpg" alt="villes d'europe" onclick="toggleText('text1')">
+  <div id="text1" class="hidden">Partez à la découverte des trésors cachés de l'Europe, de ses cultures diverses et de ses paysages à couper le souffle.<br>
     Plongez dans l'histoire fascinante, goûtez aux délices culinaires uniques et explorez les merveilles naturelles de ce continent riche en histoire et en beauté.<br>
     Chaque destination européenne offre une expérience unique et mémorable, vous permettant de créer des souvenirs inoubliables tout au long de votre voyage.<br>
-    Veuillez cliquer sur l'un des liens ci-dessous pour explorer davantage :</p>
+    Veuillez cliquer sur l'un des liens ci-dessous pour explorer davantage :</div>
+  <img src="https://i.pinimg.com/564x/ce/cc/1a/cecc1ad84da3a716d7977a4e65a2e049.jpg" alt="carte europe" onclick="toggleText('text2')">
+  <div id="text2" class="hidden">Voici une carte de l'Europe.</div>
   <a href="paris.html">France-Paris</a>
   <br>
   <a href="rome.html">Italie-Rome</a>
@@ -33,5 +44,16 @@
   <a href="amsterdam.html">Pays bas-Amsterdam</a>
   <br>
   <a href="vienne.html">Autriche-Vienne</a>
+  
+  <script>
+    function toggleText(id) {
+      var text = document.getElementById(id);
+      if (text.style.display === "none") {
+        text.style.display = "block";
+      } else {
+        text.style.display = "none";
+      }
+    }
+  </script>
 </body>
 </html>
