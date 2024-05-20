@@ -1,51 +1,130 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
   <title>Quiz Europe</title>
 </head>
 <body>
   <div id="travel-quiz">
     <h2>Testez vos connaissances sur l'Europe !</h2>
     <ul>
-      <li>Quelle est la capitale de la France ?</li>
-      <ul>
-        <li><input type="radio" name="q1" id="q1-a" value="Londres"> Londres</li>
-        <li><input type="radio" name="q1" id="q1-b" value="Paris"> Paris</li>
-        <li><input type="radio" name="q1" id="q1-c" value="Berlin"> Berlin</li>
-      </ul>
+      <li>Quelle est la capitale de la France ?
+        <ul>
+          <li><input type="radio" name="q1" value="Londres"> Londres</li>
+          <li><input type="radio" name="q1" value="Paris"> Paris</li>
+          <li><input type="radio" name="q1" value="Berlin"> Berlin</li>
+        </ul>
+      </li>
+      <li>Quelle rivière traverse Londres ?
+        <ul>
+          <li><input type="radio" name="q2" value="Seine"> Seine</li>
+          <li><input type="radio" name="q2" value="Thames"> Thames</li>
+          <li><input type="radio" name="q2" value="Danube"> Danube</li>
+        </ul>
+      </li>
+      <li>Quelle est la monnaie de l'Allemagne ?
+        <ul>
+          <li><input type="radio" name="q3" value="Euro"> Euro</li>
+          <li><input type="radio" name="q3" value="Franc"> Franc</li>
+          <li><input type="radio" name="q3" value="Livre"> Livre</li>
+        </ul>
+      </li>
+      <li>Quel pays a pour capitale Budapest ?
+        <ul>
+          <li><input type="radio" name="q4" value="Autriche"> Autriche</li>
+          <li><input type="radio" name="q4" value="Hongrie"> Hongrie</li>
+          <li><input type="radio" name="q4" value="Roumanie"> Roumanie</li>
+        </ul>
+      </li>
+      <li>Quel est le plus haut sommet d'Europe ?
+        <ul>
+          <li><input type="radio" name="q5" value="Mont Blanc"> Mont Blanc</li>
+          <li><input type="radio" name="q5" value="Mont Rose"> Mont Rose</li>
+          <li><input type="radio" name="q5" value="Elbrouz"> Elbrouz</li>
+        </ul>
+      </li>
+      <li>Quelle est la plus grande île de la Méditerranée ?
+        <ul>
+          <li><input type="radio" name="q6" value="Sicile"> Sicile</li>
+          <li><input type="radio" name="q6" value="Sardaigne"> Sardaigne</li>
+          <li><input type="radio" name="q6" value="Chypre"> Chypre</li>
+        </ul>
+      </li>
+      <li>Quel pays est surnommé le "pays des mille lacs" ?
+        <ul>
+          <li><input type="radio" name="q7" value="Norvège"> Norvège</li>
+          <li><input type="radio" name="q7" value="Finlande"> Finlande</li>
+          <li><input type="radio" name="q7" value="Suède"> Suède</li>
+        </ul>
+      </li>
+      <li>Quelle ville est célèbre pour sa tour penchée ?
+        <ul>
+          <li><input type="radio" name="q8" value="Venise"> Venise</li>
+          <li><input type="radio" name="q8" value="Rome"> Rome</li>
+          <li><input type="radio" name="q8" value="Pise"> Pise</li>
+        </ul>
+      </li>
+      <li>Quel est le plus long fleuve d'Europe ?
+        <ul>
+          <li><input type="radio" name="q9" value="Volga"> Volga</li>
+          <li><input type="radio" name="q9" value="Danube"> Danube</li>
+          <li><input type="radio" name="q9" value="Rhône"> Rhône</li>
+        </ul>
+      </li>
+      <li>Dans quel pays se trouve le Colisée ?
+        <ul>
+          <li><input type="radio" name="q10" value="Grèce"> Grèce</li>
+          <li><input type="radio" name="q10" value="Italie"> Italie</li>
+          <li><input type="radio" name="q10" value="Espagne"> Espagne</li>
+        </ul>
+      </li>
     </ul>
     <button id="submit-quiz">Soumettre</button>
-    <p id="feedback"></p>
+    <div id="feedback"></div>
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const submitButton = document.getElementById('submit-quiz');
       submitButton.addEventListener('click', function() {
-        const correctAnswer = 'Paris';
+        const correctAnswers = {
+          q1: 'Paris',
+          q2: 'Thames',
+          q3: 'Euro',
+          q4: 'Hongrie',
+          q5: 'Elbrouz',
+          q6: 'Sicile',
+          q7: 'Finlande',
+          q8: 'Pise',
+          q9: 'Volga',
+          q10: 'Italie'
+        };
         const feedback = document.getElementById('feedback');
-        const radios = document.getElementsByName('q1');
-        let userAnswer;
-        
-        for (const radio of radios) {
-          if (radio.checked) {
-            userAnswer = radio.value;
-            break;
+        feedback.innerHTML = ''; // Clear previous feedback
+
+        for (let i = 1; i <= 10; i++) {
+          const radios = document.getElementsByName('q' + i);
+          let userAnswer;
+          for (const radio of radios) {
+            if (radio.checked) {
+              userAnswer = radio.value;
+              break;
+            }
           }
-        }
-        
-        if (userAnswer) {
-          if (userAnswer === correctAnswer) {
-            feedback.textContent = 'Correct ! Paris est la capitale de la France.';
-            feedback.style.color = 'green';
+
+          const questionFeedback = document.createElement('p');
+          if (userAnswer) {
+            if (userAnswer === correctAnswers['q' + i]) {
+              questionFeedback.textContent = `Question ${i}: Correct !`;
+              questionFeedback.style.color = 'green';
+            } else {
+              questionFeedback.textContent = `Question ${i}: Incorrect. La bonne réponse est ${correctAnswers['q' + i]}.`;
+              questionFeedback.style.color = 'red';
+            }
           } else {
-            feedback.textContent = 'Incorrect. La bonne réponse est Paris.';
-            feedback.style.color = 'red';
+            questionFeedback.textContent = `Question ${i}: Veuillez sélectionner une réponse.`;
+            questionFeedback.style.color = 'orange';
           }
-        } else {
-          feedback.textContent = 'Veuillez sélectionner une réponse.';
-          feedback.style.color = 'orange';
+          feedback.appendChild(questionFeedback);
         }
       });
     });
