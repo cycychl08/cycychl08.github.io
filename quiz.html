@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Europe</title>
+</head>
+<body>
+  <div id="travel-quiz">
+    <h2>Testez vos connaissances sur l'Europe !</h2>
+    <ul>
+      <li>Quelle est la capitale de la France ?</li>
+      <ul>
+        <li><input type="radio" name="q1" id="q1-a" value="Londres"> Londres</li>
+        <li><input type="radio" name="q1" id="q1-b" value="Paris"> Paris</li>
+        <li><input type="radio" name="q1" id="q1-c" value="Berlin"> Berlin</li>
+      </ul>
+    </ul>
+    <button id="submit-quiz">Soumettre</button>
+    <p id="feedback"></p>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const submitButton = document.getElementById('submit-quiz');
+      submitButton.addEventListener('click', function() {
+        const correctAnswer = 'Paris';
+        const feedback = document.getElementById('feedback');
+        const radios = document.getElementsByName('q1');
+        let userAnswer;
+        
+        for (const radio of radios) {
+          if (radio.checked) {
+            userAnswer = radio.value;
+            break;
+          }
+        }
+        
+        if (userAnswer) {
+          if (userAnswer === correctAnswer) {
+            feedback.textContent = 'Correct ! Paris est la capitale de la France.';
+            feedback.style.color = 'green';
+          } else {
+            feedback.textContent = 'Incorrect. La bonne réponse est Paris.';
+            feedback.style.color = 'red';
+          }
+        } else {
+          feedback.textContent = 'Veuillez sélectionner une réponse.';
+          feedback.style.color = 'orange';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
