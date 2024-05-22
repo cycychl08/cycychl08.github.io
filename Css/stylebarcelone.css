@@ -1,14 +1,14 @@
 body {
-  background-color: #FFF5EE; /* Beige rosé pour le fond */
+  background-color: ##EBE6D3; /* blanc cassé pour le fond */
   font-family: 'Arial', sans-serif; /* Police classique */
 }
 
 h1 {
   font-family: 'Times New Roman', serif; /* Police avec une touche classique */
-  color: #FFD700; /* Jaune doré pour les titres */
+  color: #02708B; /*bleu canard pour les titres */
 }
 
 p {
   line-height: 1.5;
-  color: #FF4500; /* Rouge orangé pour le texte */
+  color: #D07361; /* vieux rose pour le texte */
 }
